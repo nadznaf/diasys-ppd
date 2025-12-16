@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -13,8 +15,19 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
+
+    // TODO: Ganti dengan actual API call untuk login
     console.log('Login attempt:', { email, password, rememberMe });
+
+    // Untuk demo, langsung set login status
+    localStorage.setItem('isLoggedIn', 'true');
+
+    // Extract name from email (before @) atau gunakan email
+    const userName = email.split('@')[0] || 'Pengguna';
+    localStorage.setItem('userName', userName);
+
+    // Redirect ke homepage
+    router.push('/');
   };
 
   return (
@@ -124,8 +137,7 @@ export default function LoginPage() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full py-3 px-4 bg-gray-200 text-gray-400 rounded-lg font-medium cursor-not-allowed"
-              disabled
+              className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
             >
               Masuk
             </Button>
@@ -133,8 +145,8 @@ export default function LoginPage() {
             {/* Register Link */}
             <div className="text-center text-sm">
               <span className="text-gray-600">Baru di diasys? </span>
-              <Link 
-                href="/register" 
+              <Link
+                href="/register"
                 className="text-indigo-600 font-medium hover:text-indigo-700 transition"
               >
                 Registrasi Akun Baru
