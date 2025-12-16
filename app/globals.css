@@ -1,14 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #F5F5F7;
   --foreground: #171717;
   --primary: #3B39CB;
   --bg-negative: #FBE6E4;
   --negative: #D92D20;
   --bg-positive: #E6FAF0;
   --positive: #32D583;
-  --footer: #F5F5F7;
   --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
 }
 
@@ -20,7 +19,6 @@
   --color-negative: var(--negative);
   --color-bg-positive: var(--bg-positive);
   --color-positive: var(--positive);
-  --color-footer: var(--footer);
 }
 
 html {
