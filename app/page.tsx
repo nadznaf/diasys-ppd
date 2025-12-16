@@ -97,7 +97,7 @@ export default function Home() {
   }
 
   return (
-    <main className="mt-32">
+    <main className="mt-16 lg:mt-32">
       {/* Start Page - Selalu tampil untuk semua user */}
       <section id="start-section">
         <StartPage onStartDiagnosis={handleStartDiagnosis} />

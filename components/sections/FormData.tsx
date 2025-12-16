@@ -113,34 +113,30 @@ export default function FormData({ onPredict }: FormDataProps) {
   };
 
   return (
-    <section className="bg-gray-50 py-16 px-4 md:px-8" id="formData">
+    <section className="bg-background py-12 md:py-16 px-4 md:px-8 animate-fade-in" id="formData">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             Form Input Data Klinis
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm md:text-base">
             Masukkan data pasien untuk menilai risiko diabetes menggunakan model
             Machine Learning.
           </p>
         </div>
 
-        {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-lg shadow-md p-8"
+          className="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8 transition-shadow hover:shadow-lg duration-300"
         >
-          {/* Error Message */}
           {error && (
-            <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+            <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg animate-fade-in">
               <p className="text-sm">{error}</p>
             </div>
           )}
 
-          {/* Informasi Wajib */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+          <div className="mb-6 md:mb-8">
+            <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
               Informasi Wajib
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -155,7 +151,8 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="glucose"
                     value={formData.glucose}
                     onChange={handleInputChange}
-                    placeholder="mg/dL"
+                    placeholder="Contoh: 168 (mg/dL)"
+                    min="0"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
                     required
                   />
@@ -173,7 +170,8 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="bloodPressure"
                     value={formData.bloodPressure}
                     onChange={handleInputChange}
-                    placeholder="mmHg"
+                    placeholder="Contoh: 72 (mmHg)"
+                    min="0"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
                     required
                   />
@@ -191,7 +189,9 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="weight"
                     value={formData.weight}
                     onChange={handleInputChange}
-                    placeholder="kg"
+                    placeholder="Contoh: 85.5 (kg)"
+                    min="0"
+                    step="0.1"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
                     required
                   />
@@ -209,7 +209,8 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="height"
                     value={formData.height}
                     onChange={handleInputChange}
-                    placeholder="m"
+                    placeholder="Contoh: 1.65 (meter)"
+                    min="0"
                     step="0.01"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
                     required
@@ -228,7 +229,9 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="age"
                     value={formData.age}
                     onChange={handleInputChange}
-                    placeholder="tahun"
+                    placeholder="Contoh: 50 (tahun)"
+                    min="0"
+                    max="120"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
                     required
                   />
@@ -237,13 +240,11 @@ export default function FormData({ onPredict }: FormDataProps) {
             </div>
           </div>
 
-          {/* Informasi Opsional */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+          <div className="mb-6 md:mb-8">
+            <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
               Informasi Opsional
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Insulin */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Insulin
@@ -254,13 +255,13 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="insulin"
                     value={formData.insulin}
                     onChange={handleInputChange}
-                    placeholder="mu U/ml"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                    placeholder="Contoh: 150 (mu U/ml)"
+                    min="0"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all duration-200"
                   />
                 </div>
               </div>
 
-              {/* Ketebalan Kulit */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Ketebalan Kulit (Skin Thickness)
@@ -271,13 +272,13 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="skinThickness"
                     value={formData.skinThickness}
                     onChange={handleInputChange}
-                    placeholder="mm"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                    placeholder="Contoh: 35 (mm)"
+                    min="0"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all duration-200"
                   />
                 </div>
               </div>
 
-              {/* Riwayat Keluarga */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Riwayat Keluarga (Diabetes Pedigree Function)
@@ -288,14 +289,15 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="diabetesPedigree"
                     value={formData.diabetesPedigree}
                     onChange={handleInputChange}
-                    placeholder="cth. 0.551"
+                    placeholder="Contoh: 0.8 (nilai 0-2)"
+                    min="0"
+                    max="2.5"
                     step="0.001"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all duration-200"
                   />
                 </div>
               </div>
 
-              {/* Jumlah Kehamilan */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Jumlah Kehamilan (Jika Wanita)
@@ -306,28 +308,29 @@ export default function FormData({ onPredict }: FormDataProps) {
                     name="pregnancies"
                     value={formData.pregnancies}
                     onChange={handleInputChange}
-                    placeholder="Jumlah kehamilan"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                    placeholder="Contoh: 2 (kali)"
+                    min="0"
+                    max="20"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all duration-200"
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-end">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-end">
             <Button
               type="button"
               onClick={handleClearForm}
               disabled={isLoading}
-              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium disabled:opacity-50"
+              className="px-4 md:px-6 py-2 md:py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 font-medium disabled:opacity-50"
             >
               Bersihkan Form
             </Button>
             <Button
               type="submit"
               disabled={isLoading}
-              className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium disabled:bg-indigo-400"
+              className="px-4 md:px-6 py-2 md:py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 hover:scale-105 transition-all duration-300 font-medium disabled:bg-indigo-400 shadow-lg hover:shadow-xl"
             >
               {isLoading ? "Memproses..." : "Prediksi"}
             </Button>
