@@ -9,13 +9,16 @@ import { api } from "@/lib/api";
 
 function validatePassword(password: string) {
   const errors = [];
+  if (password.length < 8) {
+    errors.push("Password minimal 8 karakter");
+  }
   if (!/[A-Z]/.test(password)) {
     errors.push("Password harus mengandung huruf kapital");
   }
   if (!/[0-9]/.test(password)) {
     errors.push("Password harus mengandung angka");
   }
-  if (!/[.,:;\-_!]/.test(password)) {
+  if (!/[.,:;\#$%&*@!]/.test(password)) {
     errors.push("Password harus mengandung karakter khusus");
   }
   return errors;
@@ -390,11 +393,10 @@ export default function Register() {
             <Button
               type="submit"
               disabled={!isFormValid || isLoading}
-              className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
-                isFormValid && !isLoading
-                  ? "bg-indigo-600 hover:bg-indigo-700 text-white"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
-              }`}
+              className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${isFormValid && !isLoading
+                ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                }`}
             >
               {isLoading ? "Memproses..." : "Daftar"}
             </Button>

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 
 export default function StartPage({ onStartDiagnosis }: { onStartDiagnosis: () => void }) {
   return (
-    <section className="relative min-h-screen pb-8 flex items-center px-8 sm:px-6 md:px-12 lg:px-36 overflow-hidden">
+    <section className="relative min-h-screen pb-8 flex items-center px-6 sm:px-8 md:px-12 lg:px-36 overflow-hidden">
       <div
         className="absolute inset-0 bg-[url('/images/home.png')] bg-cover bg-center lg:hidden"
         style={{

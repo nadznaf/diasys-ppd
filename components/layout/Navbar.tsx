@@ -217,7 +217,7 @@ export default function Navbar() {
     return (
         <>
             <nav className="bg-background font-plus-jakarta w-full fixed top-0 z-100 shadow-md animate-slide-down shadow-md">
-                <div className="flex justify-between items-center px-4 sm:px-6 md:px-12 lg:px-36 py-4 md:py-6 lg:py-8">
+                <div className="flex justify-between items-center px-4 sm:px-8 md:px-12 lg:px-36 py-4 md:py-6">
                     <Link href="/" className="transition-transform hover:scale-105 duration-300">
                         <Image
                             src="/logo/logo-landing-page.png"
