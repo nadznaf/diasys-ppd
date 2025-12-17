@@ -10,9 +10,7 @@ export interface StoredUserData {
   email: string;
 }
 
-// Token Management
 export const tokenManager = {
-  // Save tokens
   saveTokens(accessToken: string, refreshToken: string) {
     if (typeof window !== "undefined") {
       localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
@@ -20,7 +18,6 @@ export const tokenManager = {
     }
   },
 
-  // Get access token
   getAccessToken(): string | null {
     if (typeof window !== "undefined") {
       return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -28,7 +25,6 @@ export const tokenManager = {
     return null;
   },
 
-  // Get refresh token
   getRefreshToken(): string | null {
     if (typeof window !== "undefined") {
       return localStorage.getItem(REFRESH_TOKEN_KEY);
@@ -36,7 +32,6 @@ export const tokenManager = {
     return null;
   },
 
-  // Remove tokens
   removeTokens() {
     if (typeof window !== "undefined") {
       localStorage.removeItem(ACCESS_TOKEN_KEY);
@@ -47,7 +42,6 @@ export const tokenManager = {
     }
   },
 
-  // Save user data
   saveUserData(userData: StoredUserData) {
     if (typeof window !== "undefined") {
       localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
@@ -56,7 +50,6 @@ export const tokenManager = {
     }
   },
 
-  // Get user data
   getUserData(): StoredUserData | null {
     if (typeof window !== "undefined") {
       const data = localStorage.getItem(USER_DATA_KEY);
@@ -65,12 +58,10 @@ export const tokenManager = {
     return null;
   },
 
-  // Check if logged in
   isLoggedIn(): boolean {
     return !!this.getAccessToken();
   },
 
-  // Refresh access token
   async refreshAccessToken(): Promise<string | null> {
     const refreshToken = this.getRefreshToken();
     if (!refreshToken) {
@@ -87,7 +78,6 @@ export const tokenManager = {
 
       return newAccessToken;
     } catch (error) {
-      // If refresh fails, clear all tokens
       this.removeTokens();
       return null;
     }

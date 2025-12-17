@@ -23,23 +23,19 @@ export default function LoginPage() {
     setError("");
 
     try {
-      // Call login API
       const response = await api.login({
         username: email,
         password: password,
       });
 
-      // Save tokens and user data
       tokenManager.saveTokens(
         response.data.access_token,
         response.data.refresh_token
       );
       tokenManager.saveUserData(response.data.user);
 
-      // Dispatch custom event to notify other components
       window.dispatchEvent(new Event("authChange"));
 
-      // Redirect to homepage
       router.push("/");
     } catch (err: any) {
       setError(err.message || "Login gagal. Silakan coba lagi.");
@@ -50,10 +46,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-240 bg-white flex items-center justify-items-center mt-20">
-      {/* Left Section - Login Form */}
       <div className="flex-1 flex items-center justify-center px-8 py-12">
         <div className="w-full max-w-md space-y-8">
-          {/* Logo */}
           <div className="flex justify-center">
             <Image
               src="/logo/logo-login-register.png"
@@ -64,7 +58,6 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Header */}
           <div className="space-y-2">
             <h1 className="text-4xl font-bold text-gray-900">Selamat Datang</h1>
             <p className="text-gray-600">
@@ -72,16 +65,13 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Error Message */}
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
                 <p className="text-sm">{error}</p>
               </div>
             )}
 
-            {/* Email Field */}
             <div className="space-y-2">
               <label
                 htmlFor="email"
@@ -117,7 +107,6 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Password Field */}
             <div className="space-y-2">
               <label
                 htmlFor="password"
@@ -194,7 +183,6 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Remember Me Checkbox */}
             <div className="flex items-center">
               <input
                 id="remember-me"
@@ -211,7 +199,6 @@ export default function LoginPage() {
               </label>
             </div>
 
-            {/* Submit Button */}
             <Button
               type="submit"
               disabled={isLoading}
@@ -220,7 +207,6 @@ export default function LoginPage() {
               {isLoading ? "Memproses..." : "Masuk"}
             </Button>
 
-            {/* Register Link */}
             <div className="text-center text-sm">
               <span className="text-gray-600">Baru di diasys? </span>
               <Link
@@ -234,7 +220,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right Section - Image */}
       <div className="hidden lg:flex flex-1 bg-white items-center justify-center p-12">
         <div className="relative w-full max-w-2xl aspect-square">
           <Image

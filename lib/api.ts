@@ -1,6 +1,5 @@
 const BASE_URL = "https://diasys-api.duckdns.org";
 
-// Types
 export interface RegisterData {
   name: string;
   email: string;
@@ -84,9 +83,7 @@ export interface PredictionResult {
   timestamp: string;
 }
 
-// API Functions
 export const api = {
-  // Register
   async register(data: RegisterData): Promise<ApiResponse<any>> {
     const response = await fetch(`${BASE_URL}/register`, {
       method: "POST",
@@ -104,7 +101,6 @@ export const api = {
     return response.json();
   },
 
-  // Login
   async login(data: LoginData): Promise<ApiResponse<LoginResponse>> {
     const formData = new URLSearchParams();
     formData.append("username", data.username);
@@ -126,7 +122,6 @@ export const api = {
     return response.json();
   },
 
-  // Refresh Token
   async refreshToken(refreshToken: string): Promise<ApiResponse<any>> {
     const response = await fetch(`${BASE_URL}/refresh`, {
       method: "POST",
@@ -144,7 +139,6 @@ export const api = {
     return response.json();
   },
 
-  // Predict
   async predict(
     data: PredictData,
     accessToken: string
@@ -166,7 +160,6 @@ export const api = {
     return response.json();
   },
 
-  // Logout
   async logout(accessToken: string): Promise<ApiResponse<any>> {
     const response = await fetch(`${BASE_URL}/logout`, {
       method: "POST",

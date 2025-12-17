@@ -75,7 +75,6 @@ export default function Register() {
     setSuccess("");
 
     try {
-      // Call register API
       const response = await api.register({
         name,
         email,
@@ -85,7 +84,6 @@ export default function Register() {
 
       setSuccess(response.message || "Registrasi berhasil!");
 
-      // Wait 2 seconds then redirect to login
       setTimeout(() => {
         router.push("/login");
       }, 2000);

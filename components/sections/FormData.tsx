@@ -62,7 +62,6 @@ export default function FormData({ onPredict }: FormDataProps) {
     setError("");
 
     try {
-      // Get access token
       let accessToken = tokenManager.getAccessToken();
 
       if (!accessToken) {
@@ -71,7 +70,6 @@ export default function FormData({ onPredict }: FormDataProps) {
         return;
       }
 
-      // Prepare data for API
       const predictData: PredictData = {
         glucose: Number(formData.glucose),
         blood_pressure: Number(formData.bloodPressure),
@@ -84,12 +82,10 @@ export default function FormData({ onPredict }: FormDataProps) {
         pregnancies: Number(formData.pregnancies) || 0,
       };
 
-      // Call predict API
       try {
         const response = await api.predict(predictData, accessToken);
         onPredict(response.data);
       } catch (err: any) {
-        // If token expired, try to refresh
         if (err.message.includes("token") || err.message.includes("expired")) {
           accessToken = await tokenManager.refreshAccessToken();
 
@@ -98,7 +94,6 @@ export default function FormData({ onPredict }: FormDataProps) {
             return;
           }
 
-          // Retry predict with new token
           const response = await api.predict(predictData, accessToken);
           onPredict(response.data);
         } else {
@@ -140,7 +135,6 @@ export default function FormData({ onPredict }: FormDataProps) {
               Informasi Wajib
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Glukosa */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Glukosa (Glucose)
@@ -159,7 +153,6 @@ export default function FormData({ onPredict }: FormDataProps) {
                 </div>
               </div>
 
-              {/* Tekanan Darah */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Tekanan Darah (Blood Pressure)
@@ -178,7 +171,6 @@ export default function FormData({ onPredict }: FormDataProps) {
                 </div>
               </div>
 
-              {/* Berat Badan */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Berat Badan
@@ -198,7 +190,6 @@ export default function FormData({ onPredict }: FormDataProps) {
                 </div>
               </div>
 
-              {/* Tinggi Badan */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Tinggi Badan
@@ -218,7 +209,6 @@ export default function FormData({ onPredict }: FormDataProps) {
                 </div>
               </div>
 
-              {/* Usia */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Usia (Age)
